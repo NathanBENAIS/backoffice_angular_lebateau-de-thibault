@@ -6,7 +6,8 @@ import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
-
+import { catchError } from 'rxjs';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-details-produits',
   templateUrl: './details-produits.component.html',
@@ -21,25 +22,30 @@ export class DetailsProduitsComponent implements OnInit {
   selectedProduct: Product | undefined;
 
   product = { isEditing: false, };
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,private productService: ProductsService) {
 
 
    }
 
   ngOnInit() {
-    this.getProducts();
+    // this.getProducts();
+    this.productsService.getProductsFromJson().subscribe((data) => {
+      this.productsList = data;
+    });
+
+
     this.getProductsCrustacesList();
   }
 
-  getProducts() {
-    this.productsService.getProductsFromJson().subscribe({
-      next: (res: Product[]) => {
-        this.productsList = res;
+  // getProducts() {
+  //   this.productsService.getProductsFromJson().subscribe({
+  //     next: (res: Product[]) => {
+  //       this.productsList = res;
 
-      },
-      error: (e) => alert(e)
-    });
-  }
+  //     },
+  //     error: (e) => alert(e)
+  //   });
+  // }
   getProductsCrustacesList() {
     this.productsService.getProductsFromJson().subscribe({
       next: (res: Product[]) => {
@@ -63,8 +69,7 @@ export class DetailsProduitsComponent implements OnInit {
     product.isEditing = !product.isEditing;
   }
 
-  saveProduct(product: any) {
-    product.isEditing = true;
+  saveProduct(product: Product) {
   }
 
   enableEditModeForAll() {
