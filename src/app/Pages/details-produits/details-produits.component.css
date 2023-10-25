@@ -1,0 +1,54 @@
+
+.demo-table {
+  width: 80%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow:none;
+}
+
+
+
+
+.transparent-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+}
+
+.transparent-button:hover {
+  transition: border 0.3s;
+  border-radius: 5px;
+  /* border: 1px solid black; */
+  box-shadow: 1px  1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.blue-icon {
+  color: #1976d2;
+  cursor: pointer;
+}
+
+
+.width-input-max
+{
+  width: 100%;
+
+}
+.no-value-cell {
+  background-color: aqua;
+}
