@@ -85,7 +85,7 @@
       <th mat-header-cell *matHeaderCellDef>quantity_stock</th>
       <td mat-cell *matCellDef="let product">
         <ng-container *ngIf="!product.isEditing; else editField">
-          {{ product.quantity_stock }}
+          {{ product.quantityInStock }}
 
         </ng-container>
         <ng-template #editField>

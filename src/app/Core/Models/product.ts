@@ -11,7 +11,7 @@ export interface Product {
   owner: string;
   unit: string;
   name: string;
-  quantity_stock: number;
+  quantityInStock: number;
   quantity_sold:number;
   isEditing: boolean;
 
