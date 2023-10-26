@@ -27,6 +27,9 @@ export class ProductsService {
   updateProduct(product: Product): Observable<Product> {
     return this.http.get<Product>(this.apiUrl + "/putonsale/" + product.tig_id + "/" + product.discount);
   }
+  updateProductdecrementStockById(product: Product, quantity: number): Observable<Product> {
+    return this.http.get<Product>(this.apiUrl + "/decrementstock/" + product.tig_id + "/" + quantity);
+  }
 
   // public updateProduct(products: Product[]): Observable<Product[]> {
   //   console.log(products);
