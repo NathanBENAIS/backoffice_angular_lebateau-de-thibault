@@ -14,6 +14,8 @@ import { ProductsService } from './Core/Services/products.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './Features/dashboard/dashboard.component';
+import { SignupComponent } from './Features/auth/signup/signup.component';
+import { SingInComponent } from './Features/auth/sing-in/sing-in.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { DashboardComponent } from './Features/dashboard/dashboard.component';
     ProduitComponent,
     FooterComponent,
     DashboardComponent,
+    SignupComponent,
+    SingInComponent,
     // DetailsProduitsComponent
   ],
   imports: [
