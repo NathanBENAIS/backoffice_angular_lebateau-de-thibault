@@ -3,6 +3,11 @@
   width: 80%;
 }
 
+.h-10-mt-1 {
+  height: 10vh;
+  margin-top: 2vh;
+}
+
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
@@ -10,7 +15,8 @@
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
+  border-color: #e6e6e6;
+  background-color: #c8d2f36d;
 }
 
 .demo-row-is-clicked {
@@ -21,8 +27,17 @@
   box-shadow:none;
 }
 
+.vertical-line {
+  border-right: 1px solid #e6e6e6; /* Couleur et épaisseur de la bordure */
+  padding-right: 10px; /* Espace entre la bordure et le contenu de la cellule */
+}
 
 
+.dashboard {
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.05);
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.05);
+}
 
 .transparent-button {
   background: transparent;
