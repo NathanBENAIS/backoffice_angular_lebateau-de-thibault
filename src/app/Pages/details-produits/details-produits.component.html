@@ -23,6 +23,13 @@
 
 
   <p>Tableau details des produits : </p>
+  <div style="display: flex; align-items: center; justify-content: start;">
+    <h4 style="margin-top: 15px; padding: 2px;">Filtrer par Catégorie:</h4>
+    <button mat-raised-button class="transparent-button" (click)="filterByCategory('all')" [class.active]="selectedCategory === 'all'">All</button>
+    <button mat-raised-button class="transparent-button" (click)="filterByCategory(0)" [class.active]="selectedCategory === 0">Poisson</button>
+    <button mat-raised-button class="transparent-button" (click)="filterByCategory(1)" [class.active]="selectedCategory === 1">Fruits de Mer</button>
+    <button mat-raised-button class="transparent-button" (click)="filterByCategory(2)" [class.active]="selectedCategory === 2">Crustacés</button>
+  </div>
 
   <table mat-table [dataSource]="productsList" class="mat-elevation-z8 demo-table shadow-light">
 
@@ -31,18 +38,12 @@
     <ng-container matColumnDef="name">
       <th class="vertical-line" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="vertical-line" mat-cell *matCellDef="let product" [style.border]="!product.name ? '1px solid #bf1717' : ''" [attr.title]="!product.name ? 'Errrrreuur' : null">
-        <ng-container *ngIf="!product.isEditing; else editField">
+        <ng-container>
           {{ product.name }}
         </ng-container>
-        <ng-template #editField>
-          <form (submit)="saveProduct(product); toggleEditMode(product)">
-            <input type="text" [(ngModel)]="product.name" name="name" required>
-          </form>
-        </ng-template>
+
       </td>
     </ng-container>
-
-
 
     <ng-container matColumnDef="price">
       <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>Price</th>
@@ -72,15 +73,15 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="price_on_sale">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>price_on_sale</th>
-      <td class="vertical-line text-center" mat-cell *matCellDef="let product">
-        <ng-container *ngIf="!product.isEditing; else editField">
-          {{ calculatePercentageDiscount(product) }}
+    <ng-container matColumnDef="discount">
+      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>discount</th>
+      <td class="vertical-line text-center" mat-cell *matCellDef="let product" [style.border]="(product.discount < 0 || product.discount > 100) ? '1px solid #bf1717' : ''" [attr.title]="(product.discount < 0 || product.discount > 100) ? 'Errrrreuur' : null">
+          <ng-container *ngIf="!product.isEditing; else editField">
+          {{ calculatePercentageDiscount(product) }} ({{product.discount}}%)
         </ng-container>
         <ng-template #editField>
           <form (submit)="saveProduct(product); toggleEditMode(product)" style="display: flex;">
-            <input type="number" class="width-input-max" [(ngModel)]="product.price_on_sale" name="price_on_sale" required>
+            <input type="number" class="width-input-max" [(ngModel)]="product.discount" name="discount" required>
             <span *ngIf="product.isEditing">%</span>
           </form>
         </ng-template>
@@ -120,14 +121,9 @@
   <ng-container matColumnDef="comments">
     <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>comments</th>
     <td class="vertical-line" mat-cell *matCellDef="let product" [style.border]="!product.comments ? '1px solid #bf1717' : ''" [attr.title]="!product.comments ? 'Errrrreuur' : null">
-      <ng-container *ngIf="!product.isEditing; else editField">
+      <ng-container >
         {{ product.comments }}
       </ng-container>
-      <ng-template #editField>
-        <form (submit)="saveProduct(product); toggleEditMode(product)">
-          <input type="text" [(ngModel)]="product.comments" name="comments" required>
-        </form>
-      </ng-template>
     </td>
   </ng-container>
 
@@ -155,8 +151,8 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="[ 'name', 'price','sale', 'price_on_sale', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
-<tr mat-row *matRowDef="let row; columns: [ 'name', 'price','sale', 'price_on_sale', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
+  <tr mat-header-row *matHeaderRowDef="[ 'name', 'price','sale', 'discount', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
+<tr mat-row *matRowDef="let row; columns: [ 'name', 'price','sale', 'discount', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
 </table>
 <br/>
 

@@ -58,7 +58,11 @@
   /* border: 1px solid black; */
   box-shadow: 1px  1px 2px rgba(0, 0, 0, 0.2);
 }
-
+.transparent-button.active {
+  transition: border 0.3s;
+  border-radius: 5px;
+  box-shadow: 1px  1px 2px rgba(0, 0, 0, 0.2);
+}
 .blue-icon {
   color: #1976d2;
   cursor: pointer;

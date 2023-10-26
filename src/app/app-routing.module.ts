@@ -4,6 +4,8 @@ import { HomeComponent } from './Pages/home/home.component';
 import { DetailComponent } from './Pages/detail/detail.component';
 import { ProduitComponent } from './Pages/produit/produit.component';
 import { DetailsProduitsComponent } from './Pages/details-produits/details-produits.component';
+import { DashboardComponent } from './Features/dashboard/dashboard.component';
+
 
 
 

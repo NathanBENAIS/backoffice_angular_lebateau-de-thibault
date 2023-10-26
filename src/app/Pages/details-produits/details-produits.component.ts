@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
 import { catchError } from 'rxjs';
 import { of } from 'rxjs';
-
 @Component({
   selector: 'app-details-produits',
   templateUrl: './details-produits.component.html',
@@ -21,7 +20,8 @@ export class DetailsProduitsComponent implements OnInit {
   productsList: Product[] = [];
   productsCrustacesList: Product[] = [];
   selectedProduct: Product | undefined;
-
+  selectedCategory: number | string = 'all';
+  originalProductsList: Product[] = [];
   product = { isEditing: false, };
   constructor(private productsService: ProductsService,private productService: ProductsService) {
 
@@ -31,11 +31,11 @@ export class DetailsProduitsComponent implements OnInit {
   ngOnInit() {
     // this.getProducts();
     this.productsService.getProductsFromJson().subscribe((data) => {
-      this.productsList = data;
-    });
+    this.productsList = data;
+    this.originalProductsList = data;
+  });
 
 
-    this.getProductsCrustacesList();
   }
 
   // getProducts() {
@@ -47,15 +47,6 @@ export class DetailsProduitsComponent implements OnInit {
   //     error: (e) => alert(e)
   //   });
   // }
-  getProductsCrustacesList() {
-    this.productsService.getProductsFromJson().subscribe({
-      next: (res: Product[]) => {
-        this.productsCrustacesList = res.filter(product => product.category === 1);
-
-      },
-      error: (e) => alert(e)
-    });
-  }
 
   getProduit(id: number): Product | undefined {
     return this.productsList.find(product => product.id === id);
@@ -71,6 +62,20 @@ export class DetailsProduitsComponent implements OnInit {
   }
 
   saveProduct(product: Product) {
+    this.productService.updateProduct(product)
+      .pipe(
+        catchError((error) => {
+          console.error('Erreur lors de la mise à jour du produit', error);
+          throw error; // Propagez l'erreur pour la gérer ailleurs si nécessaire
+        })
+      )
+      .subscribe(
+        (updatedProduct) => {
+          // Traitement après la mise à jour réussie
+          console.log('Produit mis à jour avec succès', updatedProduct);
+        }
+      );
+
   }
 
   enableEditModeForAll() {
@@ -124,7 +129,7 @@ export class DetailsProduitsComponent implements OnInit {
 
 calculatePercentageDiscount(product: Product): number {
 
-  const discountAmount = (product.price -(product.price * (product.price_on_sale / 100)) );
+  const discountAmount = (product.price -(product.price * (product.discount / 100)) );
 
   const roundedDiscountAmount = discountAmount.toFixed(2);
 
@@ -133,5 +138,18 @@ calculatePercentageDiscount(product: Product): number {
 
 
 
+filterProducts(): void {
+  if (this.selectedCategory === 'all') {
+    // Si 'all' est sélectionné, affichez la liste complète
+    this.productsList = this.originalProductsList;
+  } else {
+    // Sinon, filtrez les produits en fonction de la catégorie
+    this.productsList = this.originalProductsList.filter(product => product.category === this.selectedCategory);
+  }
+}
+filterByCategory(category: number | string): void {
+  this.selectedCategory = category;
+  this.filterProducts();
+}
 
 }
