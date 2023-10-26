@@ -8,12 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
 import { catchError } from 'rxjs';
 import { of } from 'rxjs';
+import { StatistiqueGraphModule } from 'src/app/Features/statistique-graph/statistique-graph.module';
+import { PieChartModule } from 'src/app/Features/pie-chart/pie-chart.module';
+
 @Component({
   selector: 'app-details-produits',
   templateUrl: './details-produits.component.html',
   styleUrls: ['./details-produits.component.css'],
   standalone: true,
-  imports: [MatTableModule, NgIf, NgFor,FormsModule, MatIconModule],
+  imports: [MatTableModule, NgIf, NgFor,FormsModule, MatIconModule, StatistiqueGraphModule, PieChartModule],
   providers: [DecimalPipe],
 })
 export class DetailsProduitsComponent implements OnInit {
@@ -71,10 +74,51 @@ export class DetailsProduitsComponent implements OnInit {
       )
       .subscribe(
         (updatedProduct) => {
-          // Traitement après la mise à jour réussie
           console.log('Produit mis à jour avec succès', updatedProduct);
         }
       );
+
+      if(this.quantityInStock != product.quantityInStock ) {
+        if((product.quantityInStock - this.quantityInStock ) < 0) {
+          const valeur = (this.quantityInStock - product.quantityInStock);
+          console.log('Math.abs(valeur)' + Math.abs(valeur));
+          console.log('valeur' + valeur);
+
+          this.productService.updateProductdecrementStockById(product, Math.abs(valeur))
+            .pipe(
+              catchError((error) => {
+                console.error('Erreur lors de la mise à jour du produit', error);
+                throw error;
+              })
+            )
+            .subscribe(
+              (updatedProduct) => {
+
+                console.log('Produit mis à jour avec succès', updatedProduct);
+              }
+            );
+
+        } else {
+
+          const valeur = (this.quantityInStock - product.quantityInStock);
+          this.productService.updateProductincrementStockById(product, Math.abs(valeur))
+          .pipe(
+            catchError((error) => {
+              console.error('Erreur lors de la mise à jour du produit', error);
+              throw error;
+            })
+          )
+          .subscribe(
+            (updatedProduct) => {
+
+              console.log('Produit mis à jour avec succès', updatedProduct);
+            }
+          );
+
+        }
+
+      }
+
 
   }
 

@@ -11,7 +11,7 @@ export class StatistiqueGraphComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const chart = Highcharts.chart('container', {
       title: {
-        text: 'Unemployment rates in engineering and ICT subjects, 2021',
+        text: 'statistique des chiffres d\'affaire',
         align: 'left'
       },
       subtitle: {
