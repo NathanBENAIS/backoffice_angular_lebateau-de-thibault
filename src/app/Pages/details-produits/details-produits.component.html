@@ -62,14 +62,10 @@
     <ng-container matColumnDef="sale">
       <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>sale</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product">
-        <ng-container *ngIf="!product.isEditing; else editField">
+        <ng-container>
           {{ product.sale }}
         </ng-container>
-        <ng-template #editField>
-          <form (submit)="saveProduct(product); toggleEditMode(product)">
-            <input type="checkbox"  style="cursor: pointer;"[(ngModel)]="product.sale" name="sale" required>
-          </form>
-        </ng-template>
+
       </td>
     </ng-container>
 
@@ -77,7 +73,7 @@
       <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>discount</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product" [style.border]="(product.discount < 0 || product.discount > 100) ? '1px solid #bf1717' : ''" [attr.title]="(product.discount < 0 || product.discount > 100) ? 'Errrrreuur' : null">
           <ng-container *ngIf="!product.isEditing; else editField">
-          {{ calculatePercentageDiscount(product) }} ({{product.discount}}%)
+    {{product.discount}}%
         </ng-container>
         <ng-template #editField>
           <form (submit)="saveProduct(product); toggleEditMode(product)" style="display: flex;">
@@ -120,7 +116,7 @@
 
   <ng-container matColumnDef="comments">
     <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>comments</th>
-    <td class="vertical-line" mat-cell *matCellDef="let product" [style.border]="!product.comments ? '1px solid #bf1717' : ''" [attr.title]="!product.comments ? 'Errrrreuur' : null">
+    <td class="vertical-line" mat-cell *matCellDef="let product">
       <ng-container >
         {{ product.comments }}
       </ng-container>
