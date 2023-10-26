@@ -1,11 +1,11 @@
-<div class="dashboard w-100 h-10  border border-top-0">
+<!-- <div class="dashboard w-100 h-10-mt-1  border-0">
   <ul class="d-flex justify-content-between px-5 _mat-animation-noopable pt-3 list-unstyled">
     <strong> <li >Dashboard</li> </strong>
     <li><i class="fa-solid fa-chart-simple fa-beat-fade fa-2x" style="color: #3575e3;"></i></li>
   </ul>
-</div>
+</div>-->
 
-<div class="px-5 ">
+<div class="container ">
   <div style="display: flex; align-items: center; justify-content: end;">
     <h4 style="margin-top: 15px; padding: 2px;">All :</h4>
 
@@ -24,7 +24,7 @@
 
   <p>Tableau details des produits : </p>
 
-  <table mat-table [dataSource]="productsList" class="mat-elevation-z8 demo-table border">
+  <table mat-table [dataSource]="productsList" class="mat-elevation-z8 demo-table shadow-light">
 
 
     <!-- border: 1px solid #bf1717; -->
@@ -159,12 +159,23 @@
 <tr mat-row *matRowDef="let row; columns: [ 'name', 'price','sale', 'price_on_sale', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
 </table>
 <br/>
-<hr/>
 
-<ul>
-  <li *ngFor="let product of productsCrustacesList">
-    {{ product.name }}
-  </li>
-</ul>
+<div class="d-flex justify-content-between ">
+  <div class="col-3 shadow-light">
+    <ul class="list-unstyled p-3">
+      <li *ngFor="let product of productsCrustacesList">
+        {{ product.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-4 shadow-light">
+
+  </div>
+
+  <div class="col-3 shadow-light">
+  </div>
+  
+</div>
 
 </div>
