@@ -8,12 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { DecimalPipe } from '@angular/common';
 import { catchError } from 'rxjs';
 import { of } from 'rxjs';
+
 @Component({
   selector: 'app-details-produits',
   templateUrl: './details-produits.component.html',
   styleUrls: ['./details-produits.component.css'],
   standalone: true,
-  imports: [MatTableModule, NgIf, NgFor,FormsModule, MatIconModule,],
+  imports: [MatTableModule, NgIf, NgFor,FormsModule, MatIconModule],
   providers: [DecimalPipe],
 })
 export class DetailsProduitsComponent implements OnInit {
