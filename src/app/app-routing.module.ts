@@ -4,6 +4,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { DetailComponent } from './Pages/detail/detail.component';
 import { ProduitComponent } from './Pages/produit/produit.component';
 import { DetailsProduitsComponent } from './Pages/details-produits/details-produits.component';
+import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,8 @@ const routes: Routes = [
   { path: 'detail',component:DetailComponent },
   { path: 'produit',component:ProduitComponent },
   { path: 'details-produits',component:DetailsProduitsComponent },
+  { path: 'dashboard', component:DashboardComponent},
+  
 
 ];
 
