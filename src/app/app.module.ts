@@ -13,6 +13,8 @@ import { FooterComponent } from './Features/footer/footer.component';
 import { ProductsService } from './Core/Services/products.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { DashboardComponent } from './Features/dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     DetailComponent,
     ProduitComponent,
     FooterComponent,
+    DashboardComponent,
     // DetailsProduitsComponent
   ],
   imports: [
