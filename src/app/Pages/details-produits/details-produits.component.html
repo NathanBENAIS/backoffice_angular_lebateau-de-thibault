@@ -83,9 +83,17 @@
         </ng-template>
       </td>
     </ng-container>
+    <ng-container matColumnDef="price_on_sale">
+      <th  class="vertical-line text-center" mat-header-cell  *matHeaderCellDef>price_on_sale</th>
+      <td  class="vertical-line text-center" mat-cell *matCellDef="let product" >
+          <ng-container >
+         {{calculatePercentageDiscount(product)}}
+        </ng-container>
+      </td>
+    </ng-container>
 
-    <ng-container matColumnDef="quantity_stock">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>quantity_stock</th>
+    <ng-container matColumnDef="quantityInStock">
+      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>quantityInStock</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product">
         <ng-container *ngIf="!product.isEditing; else editField">
           {{ product.quantityInStock }}
@@ -93,7 +101,7 @@
         </ng-container>
         <ng-template #editField>
           <form (submit)="saveProduct(product); toggleEditMode(product)">
-            <input type="number" class="width-input-max" [(ngModel)]="product.quantity_stock" name="quantity_stock" required>
+            <input type="number" class="width-input-max" [(ngModel)]="product.quantityInStock" [value]="quantityInStock" name="quantityInStock" required>
           </form>
         </ng-template>
       </td>
@@ -147,27 +155,19 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="[ 'name', 'price','sale', 'discount', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
-<tr mat-row *matRowDef="let row; columns: [ 'name', 'price','sale', 'discount', 'quantity_stock', 'quantity_sold', 'comments' ,'edit',]"></tr>
-</table>
+  <tr mat-header-row *matHeaderRowDef="[ 'name', 'price','sale', 'discount','price_on_sale',  'quantityInStock', 'quantity_sold', 'comments' ,'edit',]"></tr>
+  <tr mat-row *matRowDef="let row; columns: [ 'name', 'price','sale', 'discount', 'price_on_sale', 'quantityInStock', 'quantity_sold', 'comments' ,'edit',]"></tr>
+  </table>
 <br/>
 
 <div class="d-flex justify-content-between ">
-  <div class="col-3 shadow-light">
-    <ul class="list-unstyled p-3">
-      <li *ngFor="let product of productsCrustacesList">
-        {{ product.name }}
-      </li>
-    </ul>
+  <div class="col-6 p-3 shadow-light">
+    <app-statistique-graph></app-statistique-graph>
   </div>
 
-  <div class="col-4 shadow-light">
-
+  <div class="col-5 p-3 shadow-light">
+    <app-pie-chart></app-pie-chart>
   </div>
-
-  <div class="col-3 shadow-light">
-  </div>
-  
 </div>
 
 </div>

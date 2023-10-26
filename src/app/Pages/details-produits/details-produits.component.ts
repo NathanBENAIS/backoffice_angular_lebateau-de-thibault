@@ -24,8 +24,9 @@ export class DetailsProduitsComponent implements OnInit {
   productsCrustacesList: Product[] = [];
   selectedProduct: Product | undefined;
   selectedCategory: number | string = 'all';
+  quantityInStock!: number ;
   originalProductsList: Product[] = [];
-  product = { isEditing: false, };
+  product = { isEditing: false };
   constructor(private productsService: ProductsService,private productService: ProductsService) {
 
 
@@ -62,9 +63,12 @@ export class DetailsProduitsComponent implements OnInit {
 
   toggleEditMode(product: any) {
     product.isEditing = !product.isEditing;
+    this.quantityInStock =  product.quantityInStock;
   }
 
   saveProduct(product: Product) {
+    console.log(product.quantityInStock);
+    console.log(this.quantityInStock);
     this.productService.updateProduct(product)
       .pipe(
         catchError((error) => {

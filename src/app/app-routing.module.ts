@@ -4,7 +4,8 @@ import { HomeComponent } from './Pages/home/home.component';
 import { DetailComponent } from './Pages/detail/detail.component';
 import { ProduitComponent } from './Pages/produit/produit.component';
 import { DetailsProduitsComponent } from './Pages/details-produits/details-produits.component';
-import { DashboardComponent } from './Features/dashboard/dashboard.component';
+import { ConnexionComponent } from './Pages/connexion/connexion.component';
+import { GraphComponent } from './Features/graph/graph.component';
 
 
 
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'detail',component:DetailComponent },
   { path: 'produit',component:ProduitComponent },
   { path: 'details-produits',component:DetailsProduitsComponent},
+  { path: 'connexion',component:ConnexionComponent},
+  { path: 'graph',component:GraphComponent},
 ];
 
 @NgModule({

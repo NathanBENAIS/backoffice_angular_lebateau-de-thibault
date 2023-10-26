@@ -11,19 +11,12 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  // getProductsFromJson(): Observable<Product[]> {
-  //   return this.http.get<Product[]>(`${this.apiUrl}/?format=json`);
-  // }
+  
   public getProductsFromJson(): Observable<Product[]> {
     console.log(this.http.get<Product[]>(this.apiUrl + '/infoproducts/'));
     return this.http.get<Product[]>(this.apiUrl + '/infoproducts/');
   }
 
-  // Méthode pour mettre à jour un produit
-  // updateProduct(product: Product): Observable<Product> {
-  //   const url = `${this.apiUrl}/putonsale/${product.id}/${product.discount}`;
-  //   return this.http.get<Product>(url);
-  // }
   updateProduct(product: Product): Observable<Product> {
     return this.http.get<Product>(this.apiUrl + "/putonsale/" + product.tig_id + "/" + product.discount);
   }
@@ -31,9 +24,10 @@ export class ProductsService {
     return this.http.get<Product>(this.apiUrl + "/decrementstock/" + product.tig_id + "/" + quantity);
   }
 
-  // public updateProduct(products: Product[]): Observable<Product[]> {
-  //   console.log(products);
-  //   return this.http.put<Product[]>(this.apiUrl + '/putonsale/' + {product.id}, products);
-  // }
+  updateProductincrementStockById(product: Product, quantity: number): Observable<Product> {
+    return this.http.get<Product>(this.apiUrl + "/incrementstock/" + product.tig_id + "/" + quantity);
+  }
+
+
 
 }
