@@ -5,7 +5,7 @@ import { DetailComponent } from './Pages/detail/detail.component';
 import { ProduitComponent } from './Pages/produit/produit.component';
 import { DetailsProduitsComponent } from './Pages/details-produits/details-produits.component';
 import { ConnexionComponent } from './Pages/connexion/connexion.component';
-import { GraphComponent } from './Features/graph/graph.component';
+import { GraphComponent } from './Pages/graph/graph.component';
 
 
 

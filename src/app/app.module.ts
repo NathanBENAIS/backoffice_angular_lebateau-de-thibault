@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from './Features/dashboard/dashboard.component';
 import { ConnexionComponent } from './Pages/connexion/connexion.component';
-import { GraphComponent } from './Features/graph/graph.component';
+import { GraphComponent } from './Pages/graph/graph.component';
 import { StatistiqueGraphModule } from './Features/statistique-graph/statistique-graph.module';
 import { PieChartModule } from './Features/pie-chart/pie-chart.module';
 
