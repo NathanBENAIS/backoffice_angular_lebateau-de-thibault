@@ -12,3 +12,13 @@
 .h {
     height: auto;
 }
+
+.li-dashboard {
+    font-weight: bold;
+    font-size: larger;
+    color: #1976d2;
+}
+
+.li-dashboard:hover {
+    transform: scale(1.1);
+}

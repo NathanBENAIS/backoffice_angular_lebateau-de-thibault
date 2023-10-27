@@ -61,3 +61,18 @@
   .toolbar #youtube-logo:hover {
     opacity: 0.8;
   }
+
+a {
+    color: #eeeeee;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f9b22f;
+}
+
+li:hover {
+ transform: scale(1.1);
+ animation-duration: 45ms;
+}

@@ -32,17 +32,17 @@ export class PieChartComponent implements AfterViewInit {
         }
       },
       series: [{
-        name: 'Medals',
+        name: 'les produits les plus vendus',
         data: [
-          ['Norway', 16],
-          ['Germany', 12],
-          ['USA', 8],
-          ['Sweden', 8],
-          ['Netherlands', 8],
-          ['ROC', 6],
-          ['Austria', 7],
-          ['Canada', 4],
-          ['Japan', 3]
+          ['Ailes de raie', 16],
+          ['Araignées', 12],
+          ['Huitres St vaast', 8],
+          ['filet julienne', 8],
+          ['Moules de pêche', 8],
+          ['Lieu jaune de ligne', 6],
+          ['Bouquets cuits', 7],
+          ['Filet Bar de ligne', 4],
+          ['Bar de ligne portion', 3]
         ],
         type: 'pie' // Ajoutez le type ici pour s'assurer qu'il correspond aux attentes de Highcharts
       }]
