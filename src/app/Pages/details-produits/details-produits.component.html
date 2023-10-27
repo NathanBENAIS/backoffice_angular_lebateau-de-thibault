@@ -22,7 +22,7 @@
   </div>
 
 
-  <p>Tableau details des produits : </p>
+  <p class="font-weight-bold --warning-color "><i class="fa-solid fa-fish-fins"></i>Tableau details des produits</p>
   <div style="display: flex; align-items: center; justify-content: start;">
     <h4 style="margin-top: 15px; padding: 2px;">Filtrer par Catégorie:</h4>
     <button mat-raised-button class="transparent-button" (click)="filterByCategory('all')" [class.active]="selectedCategory === 'all'">All</button>
@@ -34,7 +34,7 @@
   <table mat-table [dataSource]="productsList" class="mat-elevation-z8 demo-table shadow-light">
 
 
-
+    <!-- border: 1px solid #bf1717; -->
     <ng-container matColumnDef="name">
       <th class="vertical-line --primary-blue-title" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="vertical-line" mat-cell *matCellDef="let product" [style.border]="!product.name ? '1px solid #bf1717' : ''" [attr.title]="!product.name ? 'Errrrreuur' : null">
@@ -115,7 +115,7 @@
 
       </ng-container>
       <ng-template #editField>
-        <form (submit)="saveProduct(product); toggleEditMode(product)" >
+        <form (submit)="saveProduct(product); toggleEditMode(product)">
           <input type="number" class="width-input-max" [(ngModel)]="product.quantity_sold" name="quantity_sold" required>
         </form>
       </ng-template>
@@ -171,44 +171,3 @@
 </div>
 
 </div>
-
-<table mat-table [dataSource]="productsCrustacesList" class="mat-elevation-z8 demo-table">
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let product">
-      <ng-container *ngIf="!product.isEditing; else editField">
-        {{ product.name }}
-      </ng-container>
-      <ng-template #editField>
-        <form (submit)="saveProduct(product); toggleEditMode(product)">
-          <input type="text" [(ngModel)]="product.name" name="name" required>
-        </form>
-      </ng-template>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef>#</th>
-    <td mat-cell *matCellDef="let product">
-      <ng-container *ngIf="product.isEditing; else editField">
-        <!-- Bouton "Save" -->
-        <form (submit)="saveProduct(product); toggleEditMode(product)">
-            <div style="display: flex;">
-              <button class="transparent-button" type="submit"><mat-icon style="color: #2aa053;">save</mat-icon></button>
-              <button class="transparent-button"  type="button" (click)="toggleEditMode(product)"><mat-icon style="color: #585958;">cancel</mat-icon></button>
-          </div>
-          </form>
-      </ng-container>
-      <ng-template #editField>
-        <!-- Bouton "Edit" -->
-        <button mat-button class="transparent-button" aria-label="Example icon button with a home icon" (click)="toggleEditMode(product)">
-          <mat-icon class="blue-icon">edit</mat-icon>
-        </button>
-
-
-      </ng-template>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="[ 'name','edit']"></tr>
-  <tr mat-row *matRowDef="let row; columns: [ 'name','edit']"></tr>
-</table>
