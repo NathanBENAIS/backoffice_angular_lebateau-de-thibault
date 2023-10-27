@@ -4,6 +4,7 @@ export interface Product {
   category: number;
   availability:  boolean,
   id: number;
+  tig_id: number;
   price: number;
   price_on_sale: number;
   discount:number;
@@ -11,7 +12,7 @@ export interface Product {
   owner: string;
   unit: string;
   name: string;
-  quantity_stock: number;
+  quantityInStock: number;
   quantity_sold:number;
   isEditing: boolean;
 
