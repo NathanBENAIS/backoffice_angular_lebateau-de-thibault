@@ -139,17 +139,13 @@ export class DetailsProduitsComponent implements OnInit {
   }
 
   saveAllProducts() {
-    this.product.isEditing = false;
     for (const product of this.productsList) {
       if (product.isEditing) {
         this.saveProduct(product);
+        this.toggleEditMode(product);
       }
     }
-    for (const product of this.productsCrustacesList) {
-      if (product.isEditing) {
-        this.saveProduct(product);
-      }
-    }
+  
 
 
 

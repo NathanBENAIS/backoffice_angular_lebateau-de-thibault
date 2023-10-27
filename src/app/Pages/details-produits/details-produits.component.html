@@ -36,7 +36,7 @@
 
     <!-- border: 1px solid #bf1717; -->
     <ng-container matColumnDef="name">
-      <th class="vertical-line" mat-header-cell *matHeaderCellDef>Name</th>
+      <th class="vertical-line --primary-blue-title" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="vertical-line" mat-cell *matCellDef="let product" [style.border]="!product.name ? '1px solid #bf1717' : ''" [attr.title]="!product.name ? 'Errrrreuur' : null">
         <ng-container>
           {{ product.name }}
@@ -46,7 +46,7 @@
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>Price</th>
+      <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>Price</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product" [style.border]="product.price < 0 ? '1px solid #bf1717' : ''" [attr.title]="product.price < 0 ? 'Errrrreuur' : null">
         <ng-container *ngIf="!product.isEditing; else editField">
           {{ product.price }}
@@ -60,7 +60,7 @@
     </ng-container>
 
     <ng-container matColumnDef="sale">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>sale</th>
+      <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>sale</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product">
         <ng-container>
           {{ product.sale }}
@@ -70,7 +70,7 @@
     </ng-container>
 
     <ng-container matColumnDef="discount">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>discount</th>
+      <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>discount</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product" [style.border]="(product.discount < 0 || product.discount > 100) ? '1px solid #bf1717' : ''" [attr.title]="(product.discount < 0 || product.discount > 100) ? 'Errrrreuur' : null">
           <ng-container *ngIf="!product.isEditing; else editField">
     {{product.discount}}%
@@ -84,7 +84,7 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="price_on_sale">
-      <th  class="vertical-line text-center" mat-header-cell  *matHeaderCellDef>price_on_sale</th>
+      <th  class="vertical-line text-center --primary-blue-title" mat-header-cell  *matHeaderCellDef>price_on_sale</th>
       <td  class="vertical-line text-center" mat-cell *matCellDef="let product" >
           <ng-container >
          {{calculatePercentageDiscount(product)}}
@@ -93,7 +93,7 @@
     </ng-container>
 
     <ng-container matColumnDef="quantityInStock">
-      <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>quantityInStock</th>
+      <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>quantityInStock</th>
       <td class="vertical-line text-center" mat-cell *matCellDef="let product">
         <ng-container *ngIf="!product.isEditing; else editField">
           {{ product.quantityInStock }}
@@ -108,7 +108,7 @@
     </ng-container>
 >
   <ng-container matColumnDef="quantity_sold">
-    <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>quantity_sold</th>
+    <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>quantity_sold</th>
     <td class="vertical-line text-center" mat-cell *matCellDef="let product">
       <ng-container *ngIf="!product.isEditing; else editField">
         {{ product.quantity_sold }}
@@ -123,7 +123,7 @@
   </ng-container>
 
   <ng-container matColumnDef="comments">
-    <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>comments</th>
+    <th class="vertical-line text-center --primary-blue-title" mat-header-cell *matHeaderCellDef>comments</th>
     <td class="vertical-line" mat-cell *matCellDef="let product">
       <ng-container >
         {{ product.comments }}
@@ -133,7 +133,7 @@
 
 
   <ng-container matColumnDef="edit">
-    <th class="vertical-line text-center" mat-header-cell *matHeaderCellDef>#</th>
+    <th class="vertical-line text-center --primary-blue-title font-weight-bold" mat-header-cell *matHeaderCellDef>#</th>
     <td class="vertical-line text-center" mat-cell *matCellDef="let product">
       <ng-container *ngIf="product.isEditing; else editField">
         <!-- Bouton "Save" -->

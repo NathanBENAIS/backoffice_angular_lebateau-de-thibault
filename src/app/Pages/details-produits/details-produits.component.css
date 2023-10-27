@@ -68,11 +68,14 @@
   cursor: pointer;
 }
 
+.font-weight-bold {
+  font-weight: bold;
+  font-size: larger;
+}
 
 .width-input-max
 {
   width: 100%;
-
 }
 .no-value-cell {
   background-color: aqua;
