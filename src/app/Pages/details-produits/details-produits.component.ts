@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/Core/Services/products.service';
 import { Product } from 'src/app/Core/Models/product';
 import {NgIf, NgFor} from '@angular/common';
@@ -19,7 +19,7 @@ import { PieChartModule } from 'src/app/Features/pie-chart/pie-chart.module';
   imports: [MatTableModule, NgIf, NgFor,FormsModule, MatIconModule, StatistiqueGraphModule, PieChartModule],
   providers: [DecimalPipe],
 })
-export class DetailsProduitsComponent implements OnInit {
+export class DetailsProduitsComponent implements OnInit, OnChanges {
   productsList: Product[] = [];
   productsCrustacesList: Product[] = [];
   selectedProduct: Product | undefined;
@@ -35,11 +35,14 @@ export class DetailsProduitsComponent implements OnInit {
   ngOnInit() {
     // this.getProducts();
     this.productsService.getProductsFromJson().subscribe((data) => {
-    this.productsList = data;
-    this.originalProductsList = data;
-  });
+      this.productsList = data;
+      this.originalProductsList = data;
+    });
+  }
 
-
+    
+  ngOnChanges() {
+    console.log('helloooo ');
   }
 
   // getProducts() {

@@ -1,71 +1,80 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { ProductsService } from '../../Core/Services/products.service';
 
 @Component({
   selector: 'app-statistique-graph',
   templateUrl: './statistique-graph.component.html',
   styleUrls: ['./statistique-graph.component.css']
 })
-export class StatistiqueGraphComponent implements AfterViewInit {
+export class StatistiqueGraphComponent implements OnInit {
+  constructor(private productService: ProductsService) {}
 
-  ngAfterViewInit(): void {
-    const chart = Highcharts.chart('container', {
-      title: {
-        text: 'statistique des chiffres d\'affaire',
-        align: 'left'
-      },
-      subtitle: {
-        text: 'Chart option: Plain | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>',
-        align: 'left'
-      },
-      colors: ['#4caefe', '#3fbdf3', '#35c3e8', '#2bc9dc', '#20cfe1', '#16d4e6', '#0dd9db', '#03dfd0', '#00e4c5', '#00e9ba', '#00eeaf', '#23e274'],
-      xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      },
-      series: [{
-        type: 'column',
-        name: 'Unemployed',
-        borderRadius: 5,
-        colorByPoint: true,
-        data: [5412, 4977, 4730, 4437, 3947, 3707, 4143, 3609, 3311, 3072, 2899, 2887],
-        showInLegend: false
-      }]
-    });
-
-    document.getElementById('plain')?.addEventListener('click', () => {
-      chart.update({
-        chart: {
-          inverted: false,
-          polar: false
+  ngOnInit(): void {
+    this.productService.getProductsFromJson().subscribe((data) => {
+      const chartData = data.map((product) => ({
+        name: product.name,
+        y: product.price,
+      }));
+  
+      const chart = Highcharts.chart('container', {
+        title: {
+          text: 'Statistique des chiffres d\'affaire',
+          align: 'left'
         },
         subtitle: {
-          text: 'Chart option: Plain | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>'
-        }
+          text: 'Chart option: Plain | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>',
+          align: 'left'
+        },
+        colors: ['#4caefe', '#3fbdf3', '#35c3e8', '#2bc9dc', '#20cfe1', '#16d4e6', '#0dd9db', '#03dfd0', '#00e4c5', '#00e9ba', '#00eeaf', '#23e274'],
+        xAxis: {
+          categories: chartData.map((item) => item.name),
+        },
+        yAxis: {
+          title: {
+            text: 'Chiffre d\'affaire'
+          }
+        },
+        series: [{
+          type: 'column',
+          name: 'Chiffre d\'affaire',
+          data: chartData,
+          showInLegend: false
+        }]
       });
-    });
-
-    document.getElementById('inverted')?.addEventListener('click', () => {
-      chart.update({
-        chart: {
-          inverted: true,
-          polar: false
-        },
-        subtitle: {
-          text: 'Chart option: Inverted | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>'
-        }
+  
+      document.getElementById('plain')?.addEventListener('click', () => {
+        chart.update({
+          chart: {
+            inverted: false,
+            polar: false
+          },
+          subtitle: {
+            text: 'Chart option: Plain | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>'
+          }
+        });
       });
-    });
-
-    document.getElementById('polar')?.addEventListener('click', () => {
-      chart.update({
-        chart: {
-          inverted: false,
-          polar: true
-        },
-        subtitle: {
-          text: 'Chart option: Polar | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>'
-        }
+  
+      document.getElementById('inverted')?.addEventListener('click', () => {
+        chart.update({
+          chart: {
+            inverted: true,
+            polar: false
+          },
+          subtitle: {
+            text: 'Chart option: Inverted | Source: <a href="https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/helt-ledige" target="_blank">NAV</a>'
+          }
+        });
+      });
+  
+      document.getElementById('polar')?.addEventListener('click', () => {
+        chart.update({
+          chart: {
+            inverted: false,
+            polar: true
+          }
+        });
       });
     });
   }
-}
+}  

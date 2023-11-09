@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { HeaderComponent } from './Features/header/header.component';
 import { DetailComponent } from './Pages/detail/detail.component';
-import { ProduitComponent } from './Pages/produit/produit.component';
 import { FooterComponent } from './Features/footer/footer.component';
 import { ProductsService } from './Core/Services/products.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +16,7 @@ import { ConnexionComponent } from './Pages/connexion/connexion.component';
 import { GraphComponent } from './Pages/graph/graph.component';
 import { StatistiqueGraphModule } from './Features/statistique-graph/statistique-graph.module';
 import { PieChartModule } from './Features/pie-chart/pie-chart.module';
+import { ProduitModule } from './Pages/produit/produit.module';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { PieChartModule } from './Features/pie-chart/pie-chart.module';
     HomeComponent,
     HeaderComponent,
     DetailComponent,
-    ProduitComponent,
     FooterComponent,
     DashboardComponent,
     ConnexionComponent,
@@ -39,7 +38,8 @@ import { PieChartModule } from './Features/pie-chart/pie-chart.module';
     MatSlideToggleModule,
     MatIconModule,
     StatistiqueGraphModule,
-    PieChartModule
+    PieChartModule,
+    ProduitModule,
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

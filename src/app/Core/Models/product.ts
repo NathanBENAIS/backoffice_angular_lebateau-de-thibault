@@ -15,5 +15,6 @@ export interface Product {
   quantityInStock: number;
   quantity_sold:number;
   isEditing: boolean;
+  //sale_date: Date;
 
 }

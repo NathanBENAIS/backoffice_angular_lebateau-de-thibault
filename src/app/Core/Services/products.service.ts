@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Importez le HttpClient
+import { HttpClient } from '@angular/common/http';
 import { Product } from '../Models/product';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
 
-  private apiUrl = 'http://127.0.0.1:8000'; // Remplacez par l'URL de votre API
+  private apiUrl = 'http://127.0.0.1:8000'; 
 
   constructor(private http: HttpClient) { }
 
   
   public getProductsFromJson(): Observable<Product[]> {
-    console.log(this.http.get<Product[]>(this.apiUrl + '/infoproducts/'));
+    console.log('coucou ', this.http.get<Product[]>(this.apiUrl + '/infoproducts/'));
     return this.http.get<Product[]>(this.apiUrl + '/infoproducts/');
   }
 
@@ -27,7 +27,8 @@ export class ProductsService {
   updateProductincrementStockById(product: Product, quantity: number): Observable<Product> {
     return this.http.get<Product>(this.apiUrl + "/incrementstock/" + product.tig_id + "/" + quantity);
   }
-
-
+  getProductImageById(product: Product, quantity: number): Observable<Product> {
+    return this.http.get<Product>(this.apiUrl + "/myImage/" + product.tig_id + "/" + quantity);
+  }
 
 }

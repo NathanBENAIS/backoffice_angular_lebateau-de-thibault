@@ -13,3 +13,11 @@ body { margin: 0; font-family:Verdana, Geneva, Tahoma, sans-serif }
   .--warning-color {
     color: #ff8800;
   }
+
+  .--bg-primary-blue {
+    background-color: #1976d2;
+  }
+
+  .--bg-primary-blue:hover {
+    background-color: #1976d2;
+  }
